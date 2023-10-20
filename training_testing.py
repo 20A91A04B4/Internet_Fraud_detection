@@ -54,7 +54,35 @@ xtrain=xtrain.reshape(xtrain.shape[0],xtrain.shape[1],1)
 xtest=xtest.reshape(xtest.shape[0],xtest.shape[1],1)
 xtrain.shape,xtest.shape
 
+##TESTING
 
+import warnings
+warnings.filterwarnings("ignore")
+from keras.models import load_model
+from time import sleep
+
+from keras.models import model_from_json
+import tensorflow as tf
+
+
+json_file=open(r"C:\Users\91630\modern.json",'r')
+loaded_model_json=json_file.read()
+json_file.close()
+
+#to read json file
+from tensorflow.keras.models import model_from_json
+loaded_model=model_from_json(loaded_model_json)
+
+#load weights into new model
+#to read h5 file
+loaded_model.load_weights(r"C:\Users\91630\modern.h5")
+print('loaded_model from disk')
+
+if (loaded_model.predict([[1,3,1557555346.00,5638.00,4035679.00,46000.00,32456765.00]])):
+    print("FRAUD")
+else:
+    print("NOT A FRAUD")
+# detecting the 
 #############                    CNN ALGORITHM                  ##############
 
 import tensorflow as tf
